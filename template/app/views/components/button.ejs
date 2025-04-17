@@ -1,0 +1,6 @@
+<button id="<%= id %>" data-action="<%= action %>" class="<%= global("class").btn.primary %> <%= classes %>" form="<%= form %>" type="<%= type ?? "text" %>">
+  <span class="bg-inherit block z-10">
+    <%= label %>
+  </span>
+  <%- icons(icon,`absolute transition duration-200 group-hover:relative group-hover:block group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-100 text-primary-foreground ${iconClass}`) %>
+</button>

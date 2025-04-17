@@ -1,0 +1,14 @@
+<div style="justify-content: center;display: flex;align-items: center;flex-direction: column;">
+  <img src="<%=locals.user?.image %>" alt=" " />
+  <%- include("../components/welcome.ejs") %>
+  <button class="btn" id="switch_language_btn"><%= tr.switch_theme %></button>
+</div>
+<script>
+  const btn = document.getElementById("switch_language_btn");
+  btn.addEventListener("click", (e) => {
+    const theme = "<%= theme=='dark'?'light':'dark' %>";
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set("theme", theme)
+    window.location.search = urlParams;
+  });
+</script>

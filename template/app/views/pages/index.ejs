@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="<%=lang%>">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <title>Expresso - [##NAME##]</title>
+  <link rel="stylesheet" href="/css/lib/bootstrap.css" />
+  <link rel="stylesheet" href="/css/core/expresso.css" />
+  <link rel="stylesheet" href="/css/core/home.css" />
+  <link rel="stylesheet" href="/lib/expresso-client-router/style.css" />
+</head>
+
+<body >
+  <nav>
+    <span class="f1">[##NAME##] - <%=tr.greetings%> - <%= lang %></span>
+
+    <!-- NAV -->
+    <a href="/" route router-nav="">
+      <%= tr.home %>
+    </a>
+    <a href="/about" route router-nav="">
+      <%= tr.about %>
+    </a><a href="/faq" route router-nav="">
+      <%= tr.faq %>
+    </a>
+
+    <!-- LANG -->
+    <% const l=langs.filter(_l=>_l!=lang) %>
+      <a href="/?lang=<%= l %>" style="padding: 0">
+        <img src="<%=locals.user?.image %>" />
+      </a>
+  </nav>
+  <div class="content" router-app></div>
+
+  <a href="/logout" id="btn_logout">
+    <%= tr.logout?.toUpperCase() %> ↪
+  </a>
+  <footer>
+    <div class="expresso">
+      <a href="https://github.com/D3R50N/expresso" target="_blank">
+        <i class="icon-brand-github"></i>
+      </a>
+      <a href="https://www.npmjs.com/package/expresso-cli" target="_blank">
+        <i class="icon-brand-npm"></i>
+      </a>
+      <a href="http://expresso.maxdev.tech/" target="_blank">
+        <i class="icon-line-awesome-link"></i>
+      </a>
+    </div>
+
+    <div class="me">
+      <a href="https://www.linkedin.com/in/max-moumouni/" target="_blank">
+        <i class="icon-brand-linkedin-in"></i>
+      </a>
+      <a href="mailto:happydev.229@gmail.com" target="_blank">
+        <i class="icon-brand-google"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script src="/lib/expresso-client-router/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+#message {
+  background-color: rgb(140, 21, 21);
+  color: white;
+  padding: 0.4em 1em;
+  border-radius: 100em;
+  font-size: smaller;
+  animation: pop 0.3s;
+  margin-top: 1em;
+  text-align: center;
+
+  &.sent {
+    background-color: green;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+h1 {
+  max-width: 400px;
+  text-transform: uppercase;
+  font-weight: bold;
+  word-break: break-word;
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  input {
+    border: 1px solid rgba(128, 128, 128, 0.318) !important;
+    width: 100%;
+  }
+}
+
+button {
+  width: 100%;
+}
+
+.welcome-text{
+  margin-bottom: 1em;
+}

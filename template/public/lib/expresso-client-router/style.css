@@ -1,0 +1,68 @@
+/* *::-webkit-scrollbar{
+    display: none;
+} */
+
+[router-app] > div {
+    opacity: 0;
+    animation: fade .5s forwards;
+}
+[router-app] > .router-error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    
+
+    & .code{
+        font-size: 10em;
+        font-weight: bold;
+        display: block;
+        text-align: center;
+
+    }
+    
+    & .message{
+        font-size: 1.8em;
+        text-align: center;
+    }
+    
+}
+
+[router-app] > .router-loading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    
+    & .loading{
+        border: 3px solid #14256A;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        width: 15dvw;
+        border-top-color: transparent;
+        animation: load 1s infinite;
+    }
+    
+}
+
+
+
+@keyframes fade {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes load {
+    from{
+        rotate: 0;
+    }
+    to{
+        rotate: 360deg;
+    }
+}

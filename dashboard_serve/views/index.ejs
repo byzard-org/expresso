@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expresso MongoDB Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>Expresso MongoDB Dashboard</header>
+
+    <div class="container">
+      <div class="card" style="padding: 0">
+        <div
+          class="row"
+          style="
+            position: sticky;
+            top: 0;
+            border-radius: inherit;
+            background-color: inherit;
+            padding: 1em;
+          "
+        >
+          <h3>Collections</h3>
+          <button class="btn-refresh" onclick="fetchCollections()">
+            Refresh
+          </button>
+        </div>
+        <div id="collections" style="padding: 1em"></div>
+      </div>
+    </div>
+
+    <script>
+      const collectionsDiv = document.getElementById("collections");
+
+      function loadingDiv() {
+        return `<div class="loading-container">
+          <div class="loading"></div>
+        </div>`;
+      }
+
+      function collectionDiv(element) {
+        return ` <div class="collection">
+      <div><strong>${element.name}</strong></div>
+      <div> ${element.model}Model</div>
+      <button class="btn-view" onclick="goToDocuments('${element.name}')">View ${element.count} Docs</button>
+    </div>`;
+      }
+
+      function render(target, view) {
+        target.innerHTML = view;
+      }
+      async function fetchCollections() {
+        render(collectionsDiv, loadingDiv());
+        const response = await fetch("/api");
+        const data = await response.json();
+        render(
+          collectionsDiv,
+          data.map((element) => collectionDiv(element)).join("")
+        );
+      }
+
+      function goToDocuments(id) {
+        window.location.href = "/docs/" + id;
+      }
+
+      fetchCollections();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+ <div class="w-full relative">
+   <% if (icon) { %><%- icons(icon,"absolute left-3 top-1/2 -translate-y-1/2") %>
+   <% } %>
+   <input type="text" class="<%= global("class").input%> <%= icon&&icons(icon) ? "px-10":"px-4"  %>" name="<%=name??id%>" id="<%=id%>" placeholder="<%=placeholder%>" <% if (required) { %>required<% } %> value="<%= value %>" />
+ </div>

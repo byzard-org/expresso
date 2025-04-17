@@ -1,0 +1,16 @@
+<body class="justify-center items-center bg-base-200">
+  <div class="bg-base-300 absolute left-0 w-1/2 h-full z-0"></div>
+  <div class="flex justify-center items-center flex-col gap-4  max-w-[400px] mx-auto w-full rounded-md p-6 shadow bg-card z-10">
+    <h1 class="font-normal text-xl text-center"> <%- tr.need_verify %> </h1>
+    <form action="<%= routes.verify_account %>" id="form" method="get" class="hidden"></form>
+    <%- Button({classes:"w-full", label:tr.resend_mail,form:"form",type:"submit",icon:"ArrowRight", iconClass:"-translate-x-full opacity-0"}) %>
+
+  </div>
+  <% if (locals.email_sent!=null) { %>
+  <div class="text-white px-4 max-w-max py-1 rounded-full text-xs mt-4 animate-error text-center <%= locals.email_sent ?" bg-success":"bg-error" %>"> <%= locals.message%>
+  </div>
+  <% } %>
+  <a href="/logout" id="btn_logout" class=" font-bold flex gap-1 items-center justify-center absolute right-6 bottom-6">
+    <%= tr.logout?.toUpperCase() %> <%- icons("LogOut", "text-primary") %>
+  </a>
+</body>

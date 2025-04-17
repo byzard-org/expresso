@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  gap: 1em;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+#title {
+  color: #16161d;
+  font-size: 10em;
+  font-weight: bold;
+}
+
+#message {
+  color: grey;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 0.4em;
+  text-align: center;
+}
+#message code {
+  font-size: small;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  background-color: rgba(33, 244, 33, 0.155);
+  border: 1px solid rgb(47, 139, 62);
+}
+
+a.btn{
+    background-color: black !important;
+    color: white !important;
+    padding: 1em;
+    border-radius: .4em;
+    margin-top: 5em;
+    cursor: pointer;
+}
+
+a.btn::before{
+    content: "≪";
+    margin-right: 1em;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "expresso",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "A simple CLI for managing express.js project",
+  "keywords": [
+    "express",
+    "cli",
+    "boilerplate",
+    "generator",
+    "express.js",
+    "node.js"
+  ],
+  "homepage": "https://expresso.maxdev.tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/byzard-org/expresso.git"
+  },
+  "bin": {
+    "expresso": "./index.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^8.0.0"
+  }
+}

@@ -1,0 +1,57 @@
+.welcome-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  h1 {
+    color: var(--expresso-text);
+    font-weight: bold;
+  }
+
+  h3 {
+    color: var(--expresso-text-grey);
+  }
+}
+
+#error {
+  margin-top: 2em;
+  color: rgb(247, 26, 26);
+  padding: 0.5em 1em;
+  font-size: smaller;
+  border-radius: 10em;
+  animation: error 0.2s linear forwards;
+}
+
+.container {
+  max-width: max-content;
+}
+
+.social-login-separator {
+  &::before {
+    background-color: #fff5 !important;
+  }
+
+  span {
+    background-color: var(--expresso-bg);
+  }
+}
+
+.social-login-buttons button {
+  border-color: var(--expresso-text-grey) !important;
+  color: var(--expresso-text) !important;
+
+  &:hover{
+    color: white !important;
+  }
+}
+
+@keyframes error {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,28 @@
+<title><%= global("appname") %> | <%= title %></title>
+
+<body class="justify-center items-center">
+  <h1 id="title" class="text-9xl font-black text-foreground">
+    <%= title %>
+  </h1>
+  <% if (locals.devMode) { %>
+  <code class="absolute top-3 left-3 bg-green-900 border-green-300 text-white px-2 rounded-full uppercase text-sm">dev mode</code>
+  <% } %>
+
+
+  <span class="text-xl text-muted-foreground font-medium">
+    <%= message %>
+  </span>
+  <a id="back" class="mt-8 <%= global().class.btn.black %> max-w-max">
+    <%- icons("ArrowLeft", "text-white") %>
+    <%= tr.return_back %>
+  </a>
+
+
+  <script>
+    document.querySelector("#back").addEventListener("click", (_) => {
+      history.back();
+    });
+  </script>
+</body>
+
+</html>

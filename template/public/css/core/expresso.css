@@ -1,0 +1,90 @@
+body {
+  --expresso-primary: #551ade;
+  --expresso-primary-over: #551adeaa;
+  --expresso-secondary: #de831a;
+  --expresso-bg: #ffffff;
+  --expresso-text: black;
+  --expresso-text-grey: #777;
+  --expresso-multiply: #fff5;
+  --expresso-lighten: #0001;
+
+  &.dark {
+    --expresso-primary: #de831a;
+    --expresso-primary-over: #de831aaa;
+    --expresso-secondary: #551ade;
+    --expresso-bg: #090316;
+    --expresso-text: white;
+    --expresso-text-grey: #fffa;
+    --expresso-multiply: #0005;
+    --expresso-lighten: #fff1;
+  }
+}
+
+body {
+  background-color: var(--expresso-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--expresso-text);
+}
+
+a {
+  color: var(--expresso-primary);
+
+  &:hover {
+    color: var(--expresso-primary-over);
+  }
+}
+
+input {
+  background-color: var(--expresso-lighten) !important;
+  border-color: var(--expresso-text-grey) !important;
+}
+form i {
+  background-color: var(--expresso-multiply) !important;
+  border-color: var(--expresso-text-grey) !important;
+}
+
+button.button {
+  background-color: #000;
+  border: 1px solid #fff5;
+}
+
+.container {
+  max-width: max-content;
+}
+
+a[href="/logout"] {
+  color: var(--expresso-primary);
+  background-color: #fff1;
+  border: 1px dashed var(--expresso-primary);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-weight: bold;
+}
+
+.btn {
+  border: 1px solid var(--expresso-text);
+  padding: .6em 2em;
+  border-radius: .3em;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0px var(--expresso-lighten);
+  }
+  100% {
+    box-shadow: 0 0 0 30px rgba(0, 0, 0, 0);
+  }
+}

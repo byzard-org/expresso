@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Your Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0 1em;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100dvh;
+    }
+
+    .email-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      color: #19192a;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 20px 0;
+      background-color: #19192a;
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .footer {
+      font-size: 12px;
+      text-align: center;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Welcome to [##NAME##]</h1>
+      </div>
+    <p>Dear #{name}</p>
+    <p>Thank you for signing up for [##NAME##] ! To complete your registration, please verify your email address by clicking the button below:</p>
+    <a href="#{url}" class="button">Verify My Account</a>
+    <p>If the button above doesn’t work, copy and paste the following link into your browser:</p>
+    <p>#{url}</p>
+    <div class="footer">
+      <p>If you didn't sign up for [##NAME##], you can safely ignore this email.</p>
+    </div>
+  </div>
+</body>
+
+</html>

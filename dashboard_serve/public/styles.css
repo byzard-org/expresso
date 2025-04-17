@@ -1,0 +1,141 @@
+* {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 13px;
+}
+body {
+  background-color: #090316;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #1115;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 2px solid #444;
+}
+
+.container {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.card {
+  background-color: #16161D;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+*::-webkit-scrollbar {
+  width: 2px;
+  background-color: #222;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #444;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  & > * {
+    margin: 0 !important;
+  }
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.collection,
+.document {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+}
+
+.document {
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 1em;
+
+  tr {
+    cursor: pointer;
+    transition-duration: 0.2s;
+  }
+  td {
+    padding: .2em 0.5em;
+    width: fit-content;
+  }
+
+  tr:hover {
+    background-color: #fff1;
+  }
+
+  td:last-child {
+    width: 100%;
+  }
+}
+
+.collection:last-child,
+.document:last-child {
+  border-bottom: none;
+}
+
+.btn-refresh,
+.btn-view {
+  display: inline-block;
+  background-color: #444;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-refresh:hover,
+.btn-view:hover {
+  background-color: #555;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px dashed white;
+  border-bottom-color: transparent;
+  animation: load 0.4s linear infinite;
+}
+
+@keyframes load {
+  from {
+    rotate: 0;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}

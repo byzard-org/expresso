@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="<%=lang %>">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%-css("/css/default.css") %>
+  <%- head %>
+  <title><%= title %></title>
+</head>
+
+<body class="h-dvh flex flex-col <%= bodyClass %>">
+  <%- body %>
+
+  <script>
+    const themes = ["dark", "light"];
+    const darkThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function getTheme() {
+      const isDark = darkThemeQuery.matches;
+      const system = isDark ? themes[0] : themes[1];
+      var theme = system;
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme && ["dark", "light"].includes(currentTheme)) theme = currentTheme;
+
+      return theme;
+    }
+
+    function updateTheme() {
+      for (let t of themes) document.body.classList.remove(t);
+      const theme = getTheme();
+      document.body.classList.add(theme);
+      document.cookie = `theme=${theme};path=/;max-age=${60*60*24*365 }`;
+    }
+
+    function changeTheme(theme) {
+      if (theme) {
+        if (!themes.includes(theme)) theme = "system";
+      } else {
+        const current = getTheme();
+        theme = themes.find(t => t != current);
+      }
+      localStorage.setItem("theme", theme);
+      updateTheme();
+    }
+
+    window.addEventListener('storage', (event) => {
+      if (event.key == "theme") updateTheme();
+    });
+    darkThemeQuery.onchange = updateTheme;
+    updateTheme();
+  </script>
+
+  <script>
+    document.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
+      const action = e.target.dataset.action;
+
+      if (action && typeof window[action] === "function") {
+        let args = e.target.dataset.actionArgs;
+        if (args) {
+          try {
+            args = JSON.parse(args)
+          } catch (_) {}
+        }
+        window[action](args);
+      }
+    });
+  </script>
+</body>
+
+</html>

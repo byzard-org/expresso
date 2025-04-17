@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example router</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        nav{
+            display: flex;
+            gap: 1em;
+        }
+        nav a{
+            text-decoration: none;
+            color: black;
+
+            &.active{
+                color: red;
+            }
+        }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" router-nav route>Home</a
+      ><a href="/profile" router-nav route>Profile</a
+      >
+      <!-- This link will not be active (is not router-nav) -->
+      <a href="/login" route>Login</a>
+    </nav>
+
+    <button route="/dashboard/index" router-target="router-app2">Go to Dashboard</button>
+
+    <h1>Main Router View</h1>
+
+    <div router-app></div>
+
+
+    <h1>Router Dashboard View</h1>
+    <div id="router-app2"></div>
+
+
+    <script src="./index.js"></script>
+  </body>
+</html>

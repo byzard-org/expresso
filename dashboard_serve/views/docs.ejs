@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expresso MongoDB Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>Expresso MongoDB Dashboard</header>
+
+    <div class="container">
+      <div class="card row" style="overflow-y: hidden;">
+        <h3>Collection - <%= locals.data.name %></h3>
+
+        <button class="btn-refresh" onclick="fetchDocuments()">Refresh</button>
+      </div>
+
+      <div
+        class="card"
+        id="documents-card"
+        style="display: block; padding-top: 0;"
+      >
+        <div class="row" style="position: sticky; top: 0; background-color: inherit; padding-top: 1em;">
+          <h3>Documents</h3>
+          <button class="btn-refresh" onclick="goBack()">
+            Back to Collections
+          </button>
+        </div>
+
+        <div id="documents"></div>
+      </div>
+    </div>
+
+    <script>
+      const documentsDiv = document.getElementById("documents");
+
+      function loadingDiv() {
+        return `<div class="loading-container">
+          <div class="loading"></div>
+        </div>`;
+      }
+
+      function documentDiv(element) {
+        const data = objToStr(element);
+        return `<div class="document">
+        <div class="row" style="width:100%"><strong>${element._id}</strong>
+            
+            <button class="btn-refresh" onclick="copy(${data})">Copy</button>
+
+            </div>
+        <table cellspacing="0" cellpadding="0">
+            ${Object.keys(element)
+              .map((k) => {
+                const date = new Date(element[k]);
+                const parse = parseInt(element[k]);
+                const isNumber = parse == element[k];
+                const isBool = element[k] == true || element[k] == false;
+                const isDate =
+                  !isBool && !isNumber && !date.toString().includes("Invalid");
+                const type = isDate ? "date" : typeof element[k];
+
+                if (type == "object") {
+                  element[k] = objToStr(element[k]);
+                }
+                return `<tr>
+                     <td><i>(${type})</i></td>
+                     <td><strong>${k}</strong></td>
+                     <td onClick="copy('${element[k]}')">${element[k]}
+                        </td>
+                    </tr>
+                    `;
+              })
+              .join("")}
+        </table>
+      </div>`;
+      }
+
+      function objToStr(obj = {}) {
+        const content = Object.keys(obj).map((k) => {
+          var isObject = typeof obj[k] == "object";
+          var value = isObject ? objToStr(obj[k]) : obj[k];
+          return isObject ? k + ":" + value : k + " : '" + value + "'";
+        });
+        return `{ ${content} }`;
+      }
+
+      function copy(data) {
+        var copyText = document.createElement("input");
+        if (typeof data == "object") data = objToStr(data);
+
+        copyText.value = data.toString();
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+
+        alert("Copied");
+      }
+
+      function render(target, view) {
+        target.innerHTML = view;
+      }
+      async function fetchDocuments() {
+        render(documentsDiv, loadingDiv());
+        const response = await fetch("/api/docs/<%=locals.data.name%>");
+        const data = await response.json();
+        render(
+          documentsDiv,
+          data.docs.map((element) => documentDiv(element)).join("")
+        );
+      }
+
+      function goBack() {
+        window.location.href = "/";
+      }
+
+      fetchDocuments();
+    </script>
+  </body>
+</html>

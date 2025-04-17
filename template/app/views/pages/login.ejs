@@ -1,0 +1,67 @@
+<title><%= global("appname") %> | <%= tr.login_t?.toUpperCase() %></title>
+
+ <body class="justify-center items-center bg-base-200">
+   <div class="bg-base-300 absolute left-0 w-1/2 h-full z-0"></div>
+   <div class="mx-auto w-full max-w-max rounded-md p-6 shadow bg-card z-10">
+     <div>
+       <div class="mb-6 flex flex-col items-center">
+         <h1 class="text-3xl font-black text-foreground">
+           <%= tr.login_t?.toUpperCase() %>
+         </h1>
+         <%- _AuthTitle %>
+
+         <span class="text-muted-foreground text-center text-sm flex gap-1 flex-wrap items-center justify-center">
+           <%= tr.no_account %>
+           <a href="<%= routes.register %>" class="font-medium text-primary">
+             <%= tr.sign_up%>
+           </a>
+         </span>
+       </div>
+
+       <form action="<%= routes.login %>" method="post" id="login-form" class="flex flex-col gap-3 mt-8 mb-4">
+
+         <%- Input({ name:"email", id:"email", placeholder:tr.email_address, required:true, value:
+            locals.body?.email, icon:"Mail" }) %>
+
+
+         <%- Input({type:"password", name:"password", id:"password", placeholder:tr.password,
+            required:true, icon:"KeyRound"}) %>
+
+         <a href="<%= routes.reset_password %>" class="text-sm text-primary block text-right">
+           <%= tr.forgot_password%>
+         </a>
+
+
+       </form>
+
+      <%- Button({label:tr.login,form:"login-form",classes:"w-full", icon:"ArrowRight", iconClass:"-translate-x-full opacity-0"}) %>
+
+
+       <div class="relative flex justify-center items-center">
+         <div class="h-[1px] bg-muted-foreground opacity-20 absolute w-full top-1/2"></div>
+         <span class="bg-card p-2 z-10 text-sm text-muted-foreground">
+           <%= tr.or %>
+         </span>
+       </div>
+       <div class="flex flex-col md:flex-row gap-1">
+         <button class="flex-1 hover:!bg-[#3b5998] group flex gap-2 items-center justify-center <%= global("class").btn.black %>">
+           <%- icons("Facebook","!w-5 !h-5 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-100 group-hover:inline text-white transition duration-200") %>
+           <%= tr.login_facebook %>
+         </button>
+         <form action="<%=routes.google_auth%>">
+           <button class="group flex gap-2 items-center justify-center <%= global("class").btn.black %> hover:!bg-[#dd4b39]">
+
+             <%- icons("Google","group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-100 group-hover:inline text-white transition duration-200") %>
+             <%= tr.login_google%>
+           </button>
+         </form>
+       </div>
+
+       <%- bloc("error-message")%>
+       <!-- or <%- _ErrorMessage %>  -->
+     </div>
+   </div>
+
+
+
+ </body>

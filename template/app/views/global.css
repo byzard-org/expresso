@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #16161D; 
+
+  --base-100: #f2f2f2;
+  --base-100-content: #16161D;
+  --base-200: #ededed;
+  --base-200-content: #16161D;
+  --base-300: #dbdbdb;
+  --base-300-content: #16161D;
+
+  --card: #ffffff;
+  --card-foreground: #16161D;
+  --popover: #ededed;
+  --popover-foreground: #16161D;
+
+  --primary: #551ade;
+  --primary-foreground: #fff;
+  --secondary: #de831a;
+  --secondary-foreground: #ffffff;
+  --accent: #e1dced;
+  --accent-foreground: #000000;
+  --muted: #ededed;
+  --muted-foreground: #777;   
+
+  
+  --border: #adadc85b;
+  --input: var(--border);
+  --destructive: #b41e07;
+  --destructive-foreground: #000000;
+
+  --ring: var(--primary);
+
+  --info: #729af1;
+  --success: #58ba7a;
+  --warning: #f5c84d;
+  --error: #b41e07;
+
+  --chart-1: #57c8a2;
+  --chart-2: #8b6bd8;
+  --chart-3: #e6a96d;
+  --chart-4: #58ba7a;
+  --chart-5: #e3664b;
+
+  --radius: 0.625rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #5656a7;
+  --sidebar-primary: #57c8a2;
+  --sidebar-primary-foreground: #396f75;
+  --sidebar-accent: #e6a96d;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #dbdbdb;
+  --sidebar-ring: #57c8a2;
+
+}
+
+.dark {
+  --base-100: #1d232a;
+  --base-200: #191e24;
+  --base-300: #15191e;
+
+  --base-content: #f8f7ff;
+  --background: #191e24;
+  --foreground: #fff;
+  --primary: #a282ff;
+  --primary-foreground: #f4f0ff;
+  --secondary: #ff8db7;
+  --secondary-foreground: #fde9f2;
+  --accent: #8effe4;
+  --accent-foreground: #3ccbb5;
+  --muted: #141423;
+  --muted-foreground: #f8f7ffd4;
+  --card: #1a2026;
+  --destructive: #b41e07;
+  --destructive-foreground: #6e2924;
+   
+  --border: #e7e0ff42;
+  --input: var(--border);
+
+  --ring: #a282ff;
+  --info: #8ca9ff;
+  --info-foreground: #3c60c8;
+  --success: #9cffa3;
+  --success-foreground: #3dc459;
+  --warning: #ffe289;
+  --warning-foreground: #c97420;
+  --error: #e57b6a;
+  --error-foreground: #6e2924;
+  --chart-1: #ab8fff;
+  --chart-2: #e57bff;
+  --chart-3: #ffd17f;
+  --chart-4: #99ffa4;
+  --chart-5: #8ca9ff;
+
+  --sidebar: #161625;
+  --sidebar-foreground: #f8f7ff;
+  --sidebar-primary: #a282ff;
+  --sidebar-primary-foreground: #f4f0ff;
+  --sidebar-accent: #8effe4;
+  --sidebar-accent-foreground: #3ccbb5;
+  --sidebar-border: #0c0c17;
+  --sidebar-ring: #a282ff;
+}
+
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Black.ttf");
+  font-weight: 800;
+}
+
+* {
+  font-family: "Geist";
+}
+
+body{
+  @apply bg-background text-foreground;
+}
+
+a{
+  @apply text-primary font-medium cursor-pointer;
+}
+
+
+h1{
+  @apply text-3xl font-black text-foreground;
+}
+
+h2{
+  @apply text-2xl font-bold text-foreground;
+}
+
+h3{
+  @apply text-xl font-semibold text-foreground;
+}
+
+input{
+  @apply w-full rounded-md border border-input bg-background py-2 px-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus:ring-gray-400
+}
+
+button{
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2 transition duration-200 bg-primary text-primary-foreground; 
+}

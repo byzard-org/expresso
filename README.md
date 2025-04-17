@@ -8,7 +8,7 @@ Expresso is a command-line interface (CLI) tool designed to quickly generate Exp
 To install Expresso globally on your machine, use npm:
 
 ```sh
-npm install -g expresso-cli
+npm install -g @byzard/expresso
 ```
 
 ## Usage

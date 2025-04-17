@@ -1,5 +1,5 @@
 {
-  "name": "expresso",
+  "name": "@byzard/expresso",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -15,10 +15,10 @@
   "homepage": "https://expresso.maxdev.tech",
   "repository": {
     "type": "git",
-    "url": "https://github.com/byzard-org/expresso.git"
+    "url": "git+https://github.com/byzard-org/expresso.git"
   },
   "bin": {
-    "expresso": "./index.js"
+    "expresso": "index.js"
   },
   "dependencies": {
     "commander": "^12.1.0",
@@ -26,5 +26,12 @@
     "express": "^4.21.2",
     "fs-extra": "^11.2.0",
     "inquirer": "^8.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "D3R50N",
+  "bugs": {
+    "url": "https://github.com/byzard-org/expresso/issues"
   }
 }

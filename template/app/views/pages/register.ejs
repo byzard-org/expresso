@@ -4,21 +4,17 @@
 <body class="justify-center items-center bg-base-200">
   <div class="bg-base-300 absolute left-0 w-1/2 h-full z-0"></div>
   <div class="mx-auto w-full max-w-max rounded-md p-6 shadow bg-card z-10">
-    <div class="login-register-page">
-      <div class="mb-6 flex flex-col items-center">
+    <div>
+      <div class="flex flex-col items-center">
         <h1 class="text-3xl font-black text-foreground">
           <%= tr.register_t?.toUpperCase() %>
         </h1>
         <%- _AuthTitle %>
-        <span class="text-muted-foreground text-center text-sm flex gap-1 flex-wrap items-center justify-center">
-          <%= tr.already_have_account %>
-          <a href="<%= routes.login %>" class="font-medium text-primary">
-            <%= tr.login %>
-          </a>
-        </span>
+
       </div>
 
-      <form action="<%= routes.register %>" method="post" id="register-form" enctype="multipart/form-data" class="flex flex-col gap-3">
+      <form action="<%= routes.register %>" method="post" id="register-form" enctype="multipart/form-data" class="flex flex-col gap-3 mt-4 mb-2">
+
         <%- Input({ name: "name" , id: "name" , placeholder: tr.fullname, required: true, value: locals.body?.name,
           icon: "User" }) %> <%- Input({ name: "email" , id: "email" , placeholder: tr.email_address, required: true,
             value: locals.body?.email, icon: "Mail" }) %> <%- Input({ type: "password" , name: "password" ,
@@ -26,38 +22,26 @@
                 , name: "password-repeat" , id: "password-repeat" , placeholder: tr.repeat_password, required: true,
                 icon: "Lock" }) %>
 
-        <label for="image" id="img_label" class="text-center text-muted-foreground cursor-pointer hover:bg-base-100 <%= global("class").input%>">
+        <label for="image" id="img_label" class="overflow-hidden whitespace-nowrap truncate px-6 text-center text-muted-foreground cursor-pointer hover:bg-base-100 transition duration-200 <%= global("class").input%>">
           <%= tr.choose_profile_picture %>
         </label>
         <input type="file" name="image" id="image" accept="image/*" class="hidden" />
       </form>
 
-      <%- Button({label:tr.register,type:"submit", form:"register-form",classes:"mt-4 w-full",icon:"ArrowRight", iconClass:"-translate-x-full opacity-0"}) %>
 
+      <%- Button({label:tr.register,type:"submit",form:"register-form",classes:"mt-4 w-full",icon:"ArrowRight", iconClass:"-translate-x-full opacity-0"}) %>
 
-      <div class="relative flex justify-center items-center">
-        <div class="h-[1px] bg-muted-foreground opacity-20 absolute w-full top-1/2"></div>
-        <span class="bg-card p-2 z-10 text-sm text-muted-foreground">
-          <%= tr.or %>
-        </span>
-      </div>
-      <div class="flex flex-col md:flex-row gap-1">
-        <button class="flex-1 hover:!bg-[#3b5998] group flex gap-2 items-center justify-center <%= global("class").btn.black %>">
-          <%- icons("Facebook","!w-5 !h-5 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-100 group-hover:inline text-white transition duration-200") %>
-          <%= tr.register_facebook %>
-        </button>
-        <form action="<%=routes.google_auth%>">
-          <button class="group flex gap-2 items-center justify-center <%= global("class").btn.black %> hover:!bg-[#dd4b39]">
-
-            <%- icons("Google","group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-100 group-hover:inline text-white transition duration-200") %>
-            <%= tr.register_google%>
-          </button>
-        </form>
-      </div>
+      <span class="text-muted-foreground text-center text-sm flex gap-1 flex-wrap items-center justify-center mt-4">
+        <%= tr.already_have_account %>
+        <a href="<%= routes.login %>" class="font-medium text-primary">
+          <%= tr.login %>
+        </a>
+      </span>
 
       <%- _ErrorMessage %>
 
     </div>
+  </div>
   </div>
 
 

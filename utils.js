@@ -559,6 +559,7 @@ async function generateView(viewName) {
     process.cwd(),
     "app",
     "views",
+    "pages",
     `${toLitt(viewName)}.ejs`
   );
 

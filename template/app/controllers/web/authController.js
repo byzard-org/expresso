@@ -8,7 +8,6 @@ const Errors = require("../../../config/errors");
 const MailService = require("../../services/mail");
 const UploadService = require("../../services/upload");
 
-
 class AuthController {
   static async login(req, res) {
     try {
@@ -20,7 +19,7 @@ class AuthController {
           error: Errors.from(req, res).code.SESSION_EXPIRED,
         });
       }
-      return res.render("login");
+      return res.render("login", { redirect: req.query.redirect });
     } catch (err) {
       console.log(err.message);
       req.error = err;
@@ -29,22 +28,24 @@ class AuthController {
   }
   static async loginSubmit(req, res) {
     const errors = Errors.from(req, res);
+    let redirect = req.query.redirect;
     try {
-
       req.body.email = req.body.email?.toLowerCase();
-      
+
       const { email, password } = req.body;
 
       if (!email) {
         return res.render("login", {
           body: req.body,
           error: errors.code.EMAIL_REQUIRED,
+          redirect,
         });
       }
       if (!password) {
         return res.render("login", {
           body: req.body,
           error: errors.code.PASSWORD_REQUIRED,
+          redirect,
         });
       }
 
@@ -53,6 +54,7 @@ class AuthController {
         return res.render("login", {
           body: req.body,
           error: errors.code.USER_NOT_EXIST,
+          redirect,
         });
       }
 
@@ -60,6 +62,7 @@ class AuthController {
         return res.render("login", {
           body: req.body,
           error: errors.code.INVALID_LOGIN_METHOD,
+          redirect,
         });
       }
 
@@ -67,13 +70,14 @@ class AuthController {
         return res.render("login", {
           body: req.body,
           error: errors.code.PASSWORD_INCORRECT,
+          redirect,
         });
       }
       const token = AuthService.generateToken(user);
 
       CookieService.of(req, res).set(AppService.config.authToken, token);
 
-      const redirect = req.query.redirect || ROUTES.BASE;
+      redirect ??= ROUTES.BASE;
       res.redirect(redirect);
     } catch (err) {
       console.log(err);
@@ -98,7 +102,7 @@ class AuthController {
 
   static async register(req, res) {
     try {
-      return res.render("register");
+      return res.render("register", { redirect: req.query.redirect });
     } catch (err) {
       console.log(err.message);
       req.error = err;
@@ -108,10 +112,10 @@ class AuthController {
 
   static async registerSubmit(req, res) {
     const errors = Errors.from(req, res);
+    let redirect = req.query.redirect;
     try {
-      
       req.body.email = req.body.email?.toLowerCase();
-      
+
       const user = new User(req.body);
 
       if (!MailService.isEmail(user.email)) {
@@ -119,6 +123,7 @@ class AuthController {
         return res.render("register", {
           error: errors.code.INVALID_EMAIL,
           body: req.body,
+          redirect,
         });
       }
 
@@ -133,6 +138,7 @@ class AuthController {
         return res.render("register", {
           error: errors.code.PASSWORD_REQUIRED,
           body: req.body,
+          redirect,
         });
       }
 
@@ -142,6 +148,7 @@ class AuthController {
         return res.render("register", {
           error: errors.code.PASSWORD_LENGTH,
           body: req.body,
+          redirect,
         });
       }
 
@@ -150,6 +157,7 @@ class AuthController {
         return res.render("register", {
           error: errors.code.PASSWORD_NOT_SAME,
           body: req.body,
+          redirect,
         });
       }
       await user.save();
@@ -158,7 +166,7 @@ class AuthController {
 
       CookieService.of(req, res).set(AppService.config.authToken, token);
 
-      const redirect = req.query.redirect || ROUTES.BASE;
+      redirect ??= ROUTES.BASE;
       res.redirect(redirect);
     } catch (err) {
       // console.log(err);
@@ -168,6 +176,7 @@ class AuthController {
         return res.render("register", {
           error: errors.code.FIELD_REQUIRED,
           body: req.body,
+          redirect,
         });
       }
 
@@ -175,6 +184,7 @@ class AuthController {
         return res.render("register", {
           error: errors.code.USER_EXISTS,
           body: req.body,
+          redirect,
         });
 
       return res.render("register", {
@@ -186,7 +196,6 @@ class AuthController {
 
   static async googleLogin(req, res) {
     try {
-      // await AuthController.registerSubmit(req,res)
       const google_user = req.google_user;
       let user = await User.findOne({ email: google_user.email });
       if (!user) {

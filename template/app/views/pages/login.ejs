@@ -10,8 +10,16 @@
         </h1>
         <%- _AuthTitle %>
       </div>
+      
+      <% 
+      // handle redirect
+      let submit = routes.login;
+      let redirectPath="";
+      if(locals.redirect) redirectPath="?redirect="+redirect;
+      submit+=redirectPath;
+      %>
 
-      <form action="<%= routes.login %>" method="post" id="login-form" class="flex flex-col gap-3 mt-4 mb-2">
+      <form action="<%= submit %>" method="post" id="login-form" class="flex flex-col gap-3 mt-4 mb-2">
 
         <%- Input({ name:"email", id:"email", placeholder:tr.email_address, required:true, value:
             locals.body?.email, icon:"Mail" }) %>
@@ -30,7 +38,7 @@
 
       <span class="text-muted-foreground text-center text-sm flex gap-1 flex-wrap items-center justify-center mt-4">
         <%= tr.no_account %>
-        <a href="<%= routes.register %>" class="font-medium text-primary">
+        <a href="<%= routes.register+redirectPath %>" class="font-medium text-primary">
           <%= tr.sign_up%>
         </a>
       </span>

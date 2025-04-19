@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
   const { code } = Errors.from(req, res);
   const token = CookieService.of(req, res).get(AppService.config.authToken);
   if (!token) {
-    return res.redirect(ROUTES.LOGIN);
+    return res.redirect(ROUTES.LOGIN + `?redirect=${req.path}`);
   }
   try {
     const decoded = jwt.verify(token, AppService.config.jwtSecret);

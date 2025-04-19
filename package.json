@@ -15,7 +15,7 @@
   "homepage": "https://expresso.maxdev.tech",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byzard-org/expresso.git"
+    "url": "git+https://github.com/byzard-dev/expresso.git"
   },
   "bin": {
     "expresso": "index.js"

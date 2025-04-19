@@ -35,7 +35,7 @@ class AuthService {
    * @param {object} req - The HTTP request object, containing cookies and headers.
    * @param {object} [options] - Options when getting user.
    * @param {boolean} [options.withStripe=false] - Whether to fetch Stripe subscription details for the user.
-   * @param {boolean} [options.isBearer=false] - Whether to get token from authorization header.
+   * @param {boolean} [options.fromHeader=false] - Whether to get token from authorization header.
    * @returns {Promise<object|null>} The authenticated user object, including Stripe data if requested, or `null` if authentication fails.
    */
 
@@ -43,10 +43,10 @@ class AuthService {
     req,
     options = {
       withStripe: false,
-      isBearer: false,
+      fromHeader: false,
     }
   ) {
-    const token = options.isBearer
+    const token = options.fromHeader
       ? req.headers.authorization.replace("Bearer ", "")
       : CookieService.of(req, null).get(this.#config.authToken);
 

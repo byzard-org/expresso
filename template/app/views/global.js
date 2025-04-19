@@ -1,4 +1,4 @@
-module.exports = {
+const global = {
   class: {
     input:
       "w-full rounded-md border border-input bg-background py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus:ring-gray-400",
@@ -18,6 +18,9 @@ module.exports = {
         return `${this.default} bg-destructive text-destructive-foreground hover:bg-destructive/90`;
       },
 
+      get black() {
+        return `${this.default} bg-foreground text-background`;
+      },
       get outline() {
         return `${this.default} text-foreground border border-input bg-transparent hover:bg-accent hover:text-accent-foreground`;
       },
@@ -25,5 +28,7 @@ module.exports = {
     icon: "text-muted-foreground w-4 h-4",
   },
   year: new Date().getFullYear(),
-  appname: "[##NAME##]",
+  appname: "LeadFlow",
 };
+
+module.exports = global;

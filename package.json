@@ -1,6 +1,6 @@
 {
   "name": "@byzard/expresso",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
   "description": "A simple CLI for managing express.js project",
